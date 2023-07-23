@@ -19,6 +19,7 @@
     <div style="text-align: center">
         <h1 >Welcome to Home Page</h1>
         <br><br><br>
+        <a href="login.php" class= "btn btn-primary btn-lg">Log In</a><br><br>
         <a href="addUser.php" class= "btn btn-primary btn-lg">Add User</a><br><br>
         <a href="users.php" class= "btn btn-primary btn-lg">Show Users</a><br><br>
     </div>

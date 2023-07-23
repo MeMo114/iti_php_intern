@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+// Check if the user is logged in
+if (!$_SESSION['logged']) {
+  // Redirect the user to the login page
+  header('Location: login.php');
+  exit;
+}
+
+?>
+<?php
 $userName = $_GET["userName"];
 //var_dump($userName);
 
@@ -7,12 +18,12 @@ foreach ($users as $key => $user) {
     $userData = explode(':',$user);
     if( $userName == $userData[0]){
         //unset($users[$key]);
-        $gender = $userData[1];
-        $firstName = $userData[2];
-        $lastName = $userData[3];
-        $address = $userData[4];
-        $country = $userData[5];
-        $allSkills = $userData[6];
+        $gender = $userData[2];
+        $firstName = $userData[3];
+        $lastName = $userData[4];
+        $address = $userData[5];
+        $country = $userData[6];
+        $allSkills = $userData[7];
 
         echo "
             <form method='post' action='saveUser.php'>

@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!$_SESSION['logged']) {
+  // Redirect the user to the login page
+  header('Location: login.php');
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,14 +43,14 @@
         <th>Address</th>
         <th>Country</th>
         <th>Skills</th>
-        <th>userName</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>";
     foreach ($users as  $value) {
         $user = explode(':',$value);
         echo "<tr>";
-        foreach ($user as  $val) {
+        foreach ($user as  $key=>$val) {
+            if($key<2) continue;
             echo "<td>$val</td>";
         }
         echo "<td> <a href='editUser.php?userName={$user[0]}' class='btn btn-warning'>Edit</a></td>";

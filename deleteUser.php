@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+// Check if the user is logged in
+if (!$_SESSION['logged']) {
+  // Redirect the user to the login page
+  header('Location: login.php');
+  exit;
+}
+
+?>
+<?php
 $userName = $_GET["userName"];
 $users=file('usersData.txt');
 foreach ($users as $key => $user) {

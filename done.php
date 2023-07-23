@@ -52,9 +52,11 @@ if(!isset($_REQUEST["checkedSentence"]) or empty($_REQUEST["checkedSentence"])){
     $depart = $_REQUEST["department"];
     $country = $_REQUEST["country"];
     $userName = $_REQUEST["userName"]; 
+    $password = $_REQUEST["password"]; 
+    
     if ($input_text === $expected_text) {
         $allSkills=implode(',',$skills);
-        $data = "$userName:$gender:$firstName:$lastName:$address:$country:$allSkills\n";
+        $data = "$userName:$password:$gender:$firstName:$lastName:$address:$country:$allSkills\n";
         $file = "usersData.txt";
         $handle = fopen($file, "a");
         fwrite($handle, $data);

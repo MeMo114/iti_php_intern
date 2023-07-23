@@ -17,12 +17,12 @@ foreach($users as $user) {
     $userData = explode(':', $user);
 
     if($userData[0] === $userName) {
-        $userData[1] = $gender;
-        $userData[2] = $firstName;
-        $userData[3] = $lastName;
-        $userData[4] = $address;
-        $userData[5] = $country;
-        $userData[6] = $allSkills;
+        $userData[2] = $gender;
+        $userData[3] = $firstName;
+        $userData[4] = $lastName;
+        $userData[5] = $address;
+        $userData[6] = $country;
+        $userData[7] = $allSkills;
 
         $updatedUser = implode(':', $userData);
 
