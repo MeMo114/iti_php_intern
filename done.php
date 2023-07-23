@@ -36,10 +36,29 @@ if(!isset($_REQUEST["password"]) or empty($_REQUEST["password"])){
     $errors['password'] = " password is required. ";
 }
 else {
-    if (!strlen($_REQUEST["password"]) == 8 or  !preg_match('/^[a-z0-9_]+$/',$_REQUEST["password"])){$errors['password'] = "invalid password"}
+    if (!strlen($_REQUEST["password"]) == 8 or  !preg_match('/^[a-z0-9_]+$/',$_REQUEST["password"])){$errors['password'] = "invalid password";}
 }
 if(!isset($_REQUEST["checkedSentence"]) or empty($_REQUEST["checkedSentence"])){
     $errors['checkedSentence'] = " checkedSentence is required. ";
+}
+
+// image
+if(!isset($_FILES['image']) or empty($_FILES['image']['name'])){
+    $errors['image'] = " image is required. ";
+
+}else{
+    $imgName= $_FILES['image']['name'];
+    $imgTmpName= $_FILES['image']['tmp_name'];
+
+    $ext = pathinfo($imgName)['extension'];
+
+    $imgNewName = "images/".time().".".$ext;
+
+    if(in_array($ext, array('jpg','mpeg','png','jpeg'))){
+        move_uploaded_file($imgTmpName,$imgNewName);
+    }else{
+        $errors['image'] = " invalid extension for image . ";
+    }
 }
 
 if(count($errors) > 0){
@@ -63,11 +82,12 @@ if(count($errors) > 0){
     $depart = $_REQUEST["department"];
     $country = $_REQUEST["country"];
     $userName = $_REQUEST["userName"]; 
-    $password = $_REQUEST["password"]; 
+    $password = $_REQUEST["password"];
+    $img = $imgNewName; 
     
     if ($input_text === $expected_text) {
         $allSkills=implode(',',$skills);
-        $data = "$userName:$password:$gender:$firstName:$lastName:$email:$address:$country:$allSkills\n";
+        $data = "$userName:$password:$gender:$firstName:$lastName:$email:$address:$country:$allSkills:$img\n";
         $file = "usersData.txt";
         $handle = fopen($file, "a");
         fwrite($handle, $data);

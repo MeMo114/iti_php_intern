@@ -26,7 +26,7 @@
 <body>
     <div class="container">
         <h2>Registration Form</h2><br>
-        <form action="done.php" method="post">
+        <form action="done.php" method="post" enctype="multipart/form-data" >
             <div class="form-group">
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" placeholder="Enter firstName" name="firstName" class="form-control">
@@ -100,7 +100,14 @@
             <label for="checkedSentence" > <h3 name="sentence" style="font-family: Arial, sans-serif;">ITI_PHP_intern</h3> </label>
             <input type="text" id="checkedSentence" placeholder="Enter checkedSentence" name="checkedSentence" class="form-control">
             <span > <?php if(isset($errors['checkedSentence'])){echo $errors['checkedSentence'];} ?> </span>
+            <br><br>
 
+            <div class="form-group">
+                <label for="image">Profile Picture:</label>
+                <input type="file" class="form-control" name="image">
+                <span > <?php if(isset($errors['image'])){echo $errors['image'];} ?> </span>
+           
+            </div>
 
             <br><br>
             <button type="submit" class="btn btn-default">Submit</button>

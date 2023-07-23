@@ -44,6 +44,7 @@ if (!$_SESSION['logged']) {
         <th>Address</th>
         <th>Country</th>
         <th>Skills</th>
+        <th >Profile Picture</th> 
         <th>Edit</th>
         <th>Delete</th>
     </tr>";
@@ -51,9 +52,10 @@ if (!$_SESSION['logged']) {
         $user = explode(':',$value);
         echo "<tr>";
         foreach ($user as  $key=>$val) {
-            if($key<2) continue;
+            if($key<2 or $key==9) continue;
             echo "<td>$val</td>";
         }
+        echo "<td> <img src='$user[9]' height='50' > </td>";
         echo "<td> <a href='editUser.php?userName={$user[0]}' class='btn btn-warning'>Edit</a></td>";
         echo "<td> <a href='deleteUser.php?userName={$user[0]}' class='btn btn-danger'>Delete</a></td>";
         echo "</tr>";
