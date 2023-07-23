@@ -40,6 +40,7 @@ if (!$_SESSION['logged']) {
         <th>Title</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Email</th>
         <th>Address</th>
         <th>Country</th>
         <th>Skills</th>

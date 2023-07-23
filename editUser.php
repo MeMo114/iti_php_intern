@@ -21,9 +21,10 @@ foreach ($users as $key => $user) {
         $gender = $userData[2];
         $firstName = $userData[3];
         $lastName = $userData[4];
-        $address = $userData[5];
-        $country = $userData[6];
-        $allSkills = $userData[7];
+        $email = $userData[5];
+        $address = $userData[6];
+        $country = $userData[7];
+        $allSkills = $userData[8];
 
         echo "
             <form method='post' action='saveUser.php'>
@@ -39,6 +40,10 @@ foreach ($users as $key => $user) {
                 <div class='form-group'>
                     <label for='lastName'>Last Name:</label>
                     <input type='text' class='form-control' id='lastName' name='lastName' value='$lastName'>
+                </div>
+                <div class='form-group'>
+                    <label for='email'>Email:</label>
+                    <input type='text' class='form-control' id='email' name='email' value='$email'>
                 </div>
                 <div class='form-group'>
                     <label for='address'>Address:</label>

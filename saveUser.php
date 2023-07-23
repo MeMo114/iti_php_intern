@@ -3,6 +3,7 @@ $userName = $_REQUEST['userName'];
 $gender = $_REQUEST['gender'];
 $firstName = $_REQUEST['firstName'];
 $lastName = $_REQUEST['lastName'];
+$email = $_REQUEST['email'];
 $address = $_REQUEST['address'];
 $country = $_REQUEST['country'];
 $allSkills = $_REQUEST['allSkills'];
@@ -20,9 +21,10 @@ foreach($users as $user) {
         $userData[2] = $gender;
         $userData[3] = $firstName;
         $userData[4] = $lastName;
-        $userData[5] = $address;
-        $userData[6] = $country;
-        $userData[7] = $allSkills;
+        $userData[5] = $email;
+        $userData[6] = $address;
+        $userData[7] = $country;
+        $userData[8] = $allSkills;
 
         $updatedUser = implode(':', $userData);
 

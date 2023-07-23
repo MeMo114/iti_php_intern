@@ -37,6 +37,11 @@
             <span > <?php if(isset($errors['lastName'])){echo $errors['lastName'];} ?> </span>
             <br><br>
 
+            <label for="email">Email:</label>
+            <input type="text" id="email" placeholder="Enter email" name="email" class="form-control">
+            <span > <?php if(isset($errors['email'])){echo $errors['email'];} ?> </span>
+            <br><br>
+
             <label for="address">Address:</label>
             <textarea id="address" placeholder="Enter Address" name="address" rows="4" cols="40" class="form-control"></textarea>
             <span > <?php if(isset($errors['address'])){echo $errors['address'];} ?> </span>

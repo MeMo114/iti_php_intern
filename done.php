@@ -8,6 +8,13 @@ if(!isset($_REQUEST["firstName"]) or empty($_REQUEST["firstName"])){
 if(!isset($_REQUEST["lastName"]) or empty($_REQUEST["lastName"])){
     $errors['lastName'] = " last name is required. ";
 }
+if(!isset($_REQUEST["email"]) or empty($_REQUEST["email"])){
+    $errors['email'] = " email is required. ";
+}
+else{
+    if (!filter_var($_REQUEST["email"], FILTER_VALIDATE_EMAIL)) {$errors['email']= "Invalid email address";}
+   // if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $_REQUEST["email"])) {$errors['email']= "Invalid email address";}
+}
 if(!isset($_REQUEST["address"]) or empty($_REQUEST["address"])){
     $errors['address'] = " address is required."; 
 }
@@ -28,17 +35,20 @@ if(!isset($_REQUEST["userName"]) or empty($_REQUEST["userName"])){
 if(!isset($_REQUEST["password"]) or empty($_REQUEST["password"])){
     $errors['password'] = " password is required. ";
 }
+else {
+    if (!strlen($_REQUEST["password"]) == 8 or  !preg_match('/^[a-z0-9_]+$/',$_REQUEST["password"])){$errors['password'] = "invalid password"}
+}
 if(!isset($_REQUEST["checkedSentence"]) or empty($_REQUEST["checkedSentence"])){
     $errors['checkedSentence'] = " checkedSentence is required. ";
 }
 
-    if(count($errors) > 0){
+if(count($errors) > 0){
         $formErrors=json_encode($errors);
         var_dump($formErrors);
         header("Location:addUser.php?errors=$formErrors");
 
         exit();
-    }
+}
     
     else{
     $expected_text = "ITI_PHP_intern";
@@ -47,6 +57,7 @@ if(!isset($_REQUEST["checkedSentence"]) or empty($_REQUEST["checkedSentence"])){
     $gender = $_REQUEST["gender"];
     $firstName = $_REQUEST["firstName"];
     $lastName = $_REQUEST["lastName"];
+    $email = $_REQUEST["email"];
     $address = $_REQUEST["address"];
     $skills = $_REQUEST["skills"];
     $depart = $_REQUEST["department"];
@@ -56,7 +67,7 @@ if(!isset($_REQUEST["checkedSentence"]) or empty($_REQUEST["checkedSentence"])){
     
     if ($input_text === $expected_text) {
         $allSkills=implode(',',$skills);
-        $data = "$userName:$password:$gender:$firstName:$lastName:$address:$country:$allSkills\n";
+        $data = "$userName:$password:$gender:$firstName:$lastName:$email:$address:$country:$allSkills\n";
         $file = "usersData.txt";
         $handle = fopen($file, "a");
         fwrite($handle, $data);
