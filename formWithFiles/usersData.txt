@@ -1,4 +1,1 @@
-mai:123:Miss:MeMo:Abdelnaby:mai3bdo@gmail.com:Giza - Egypt:USA:JavaScript:
-maiii:123:Miss:Mai:Abdelnaby::Giza - Egypt:USA:JavaScript:
-mmma:123:Miss:Me:Mo::Giza :MEX:HTML,Python:
 MeMo:12345678:Miss:Mai:Abdelnaby:mai3bdo2002@gmail.com:Giza - Egypt:GER:Python:images/1690121349.jpeg
