@@ -1,5 +1,6 @@
 <?php
-include('connection.php');
+//include('connection.php');
+include('DB.php');
 ?>
 
 <?php
@@ -18,13 +19,17 @@ if (!$_SESSION['logged']) {
 
 $userID = $_GET["userID"];
 
-$sql ="select * from users where id=?";
-$stmt = $db->prepare($sql);
-$stmt-> bindParam(1,$userID);
+// $sql ="select * from users where id=?";
+// $stmt = $db->prepare($sql);
+// $stmt-> bindParam(1,$userID);
 
-$stmt->execute();
+// $stmt->execute();
 
-$users = $stmt->fetchall(PDO::FETCH_ASSOC);
+// $users = $stmt->fetchall(PDO::FETCH_ASSOC);
+
+$db = new DB();
+$dbConn = $db->connect('root', '2002');
+$users = $db->select($dbConn,'users', $userID);
 
 //var_dump($users);
 

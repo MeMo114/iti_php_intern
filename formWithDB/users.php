@@ -1,6 +1,7 @@
-<?php
-include('connection.php');
-?>
+ <?php
+//include('connection.php');
+include('DB.php');
+?> 
 
 <?php
 session_start();
@@ -34,14 +35,19 @@ if (!$_SESSION['logged']) {
 
 <?php
 
-$sql ="select * from users";
-$stmt = $db->prepare($sql);
+// $sql ="select * from users";
+// $stmt = $db->prepare($sql);
 
-$stmt->execute();
+// $stmt->execute();
 
-$users = $stmt->fetchall(PDO::FETCH_ASSOC);
+// $users = $stmt->fetchall(PDO::FETCH_ASSOC);
+
+$db = new DB();
+$dbConn = $db->connect('root', '2002');
+
+$users = $db->selectAllUsers($dbConn,'users');
 //var_dump($users);
-   
+
     echo "<table class='table'>
     <tr>
     

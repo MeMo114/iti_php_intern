@@ -1,5 +1,6 @@
 <?php
-include('connection.php');
+//include('connection.php');
+include('DB.php');
 ?>
 <?php
 session_start();
@@ -14,10 +15,15 @@ if (!$_SESSION['logged']) {
 ?>
 <?php
 $userID = $_GET["userID"];
-$sql ="delete from users WHERE id=:id";
-$stmt = $db->prepare($sql);
-$stmt-> bindParam(':id',$userID);
 
-$stmt->execute();
+// $sql ="delete from users WHERE id=:id";
+// $stmt = $db->prepare($sql);
+// $stmt-> bindParam(':id',$userID);
+
+// $stmt->execute();
+
+$db = new DB();
+$dbConn = $db->connect('root', '2002');
+$db->delete($dbConn,'users', $userID);
 header("Location:users.php");
 ?>

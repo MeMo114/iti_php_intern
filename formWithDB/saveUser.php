@@ -1,5 +1,6 @@
 <?php
-include('connection.php');
+//include('connection.php');
+include('DB.php');
 ?>
 
 <?php
@@ -16,22 +17,27 @@ if (!$_SESSION['logged']) {
 <?php
 $userID = $_REQUEST['userID'];
 
-$name = $_REQUEST['name'];
-$email = $_REQUEST['email'];
-$roomNo = $_REQUEST['roomNo'];
-$Ext = $_REQUEST['Ext'];
+$users= array(
+  'name' => $_REQUEST["name"],
+  'email' => $_REQUEST["email"],
+  'roomNo' => $_REQUEST["roomNo"],
+  'Ext' => $_REQUEST["Ext"]
+);
 
-$sql ="update users set name=:name, email=:email, roomNo=:roomNo, Ext=:Ext where id=:id;";
-$stmt = $db->prepare($sql);
+// $sql ="update users set name=:name, email=:email, roomNo=:roomNo, Ext=:Ext where id=:id;";
+// $stmt = $db->prepare($sql);
 
-$stmt-> bindParam(':name',$name);
-$stmt-> bindParam(':email',$email);
-$stmt-> bindParam(':roomNo',$roomNo);
-$stmt-> bindParam(':Ext',$Ext);
-$stmt-> bindParam(':id',$userID);
+// $stmt-> bindParam(':name',$name);
+// $stmt-> bindParam(':email',$email);
+// $stmt-> bindParam(':roomNo',$roomNo);
+// $stmt-> bindParam(':Ext',$Ext);
+// $stmt-> bindParam(':id',$userID);
     
-$stmt->execute();
+// $stmt->execute();
        
+$db = new DB();
+$dbConn = $db->connect('root', '2002');
+$db->update($dbConn,'users',$users, $userID);
 header("Location:users.php");
 
 exit;

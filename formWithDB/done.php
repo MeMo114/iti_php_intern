@@ -1,5 +1,7 @@
 <?php
-include('connection.php');
+//include('connection.php');
+include('DB.php');
+
 $errors = array();
 
 if(!isset($_REQUEST["name"]) or empty($_REQUEST["name"])){
@@ -60,24 +62,32 @@ if(count($errors) > 0){
 }
     
 else{
-    
-    $name = $_REQUEST["name"];
-    $email = $_REQUEST["email"];
-    $roomNo = $_REQUEST["roomNo"];
-    $password = $_REQUEST["password"];
-    $Ext=$_REQUEST["ext"];
-    $img = $imgNewName; 
-    
-    $sql ="insert into users(name,email,password,roomNo,Ext) values( :name, :email, :password, :roomNo, :Ext);";
-    $stmt = $db->prepare($sql);
+    $users= array(
+        'name' => $_REQUEST["name"],
+        'email' => $_REQUEST["email"],
+        'password' => $_REQUEST["password"],
+        'roomNo' => $_REQUEST["roomNo"],
+        'Ext' => $_REQUEST["ext"]
+    );
+    //var_dump($users);
+    //$img = $imgNewName; 
 
-    $stmt-> bindParam(':name',$name);
-    $stmt-> bindParam(':email',$email);
-    $stmt-> bindParam(':password',$password);
-    $stmt-> bindParam(':roomNo',$roomNo);
-    $stmt-> bindParam(':Ext',$Ext);
+
     
-    $stmt->execute();
+    // $sql ="insert into users(name,email,password,roomNo,Ext) values( :name, :email, :password, :roomNo, :Ext);";
+    // $stmt = $db->prepare($sql);
+
+    // $stmt-> bindParam(':name',$name);
+    // $stmt-> bindParam(':email',$email);
+    // $stmt-> bindParam(':password',$password);
+    // $stmt-> bindParam(':roomNo',$roomNo);
+    // $stmt-> bindParam(':Ext',$Ext);
+    
+    // $stmt->execute();
+
+    $db = new DB();
+    $dbConn = $db->connect('root', '2002');
+    $db->insert($dbConn,'users',$users);
        
     header("Location:users.php");
     exit; 
